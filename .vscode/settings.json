@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\charm\\OneDrive\\Documents\\Code Stuff\\project-u2t0j-main\\project-u2t0j-main\\lib\\json-20240303.jar",
+        "c:\\Users\\charm\\OneDrive\\Documents\\Code Stuff\\project-u2t0j-main\\project-u2t0j-main\\lib\\junit-platform-console-standalone-1.10.2.jar"
+    ]
+}

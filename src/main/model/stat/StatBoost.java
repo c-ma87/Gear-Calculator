@@ -6,21 +6,26 @@ public abstract class StatBoost {
     private String school;
 
     // REQUIRES: school is one of "life", "death", "myth", "ice", "fire",
-    // "storm", "balance"
+    // "storm", "balance" && boost >= 0
     // EFFECTS: constructs a stat boost with a boost value and a school
     public StatBoost(int boost, String school) {
-        // TODO
+        this.boost = boost;
+        this.school = school;
     }
 
-    // EFFECTS: returns the multiplier applied as a stat bonus as a percentage, based on boost
-    public abstract int getMultiplier();
+    // EFFECTS: returns the multiplier applied as a stat bonus as a multiplier, based on boost
+    protected abstract double calculateMultiplier();
 
-    public void setBoost() {
-        // TODO
+    // REQUIRES: boost >= 0
+    public void setBoost(int boost) {
+        this.boost = boost;
     }
 
     public int getBoost() {
-        // TODO
-        return 0;
+        return boost;
+    }
+
+    public String getSchool() {
+        return school;
     }
 }
