@@ -36,31 +36,31 @@ public class DamageBoostTest {
     }
 
     @Test
-    void testGetMultiplierNoBoost() {
+    void testCalculateMultiplierNoBoost() {
         testDamageBoost.setBoost(0);
         assertEquals(1.0, testDamageBoost.getMultiplier());
     }
 
     @Test
-    void testGetMultiplierBelowIntersect() {
+    void testCalculateMultiplierBelowIntersect() {
         testDamageBoost.setBoost(230);
         assertEquals(3.30, testDamageBoost.getMultiplier());
     }
 
     @Test
-    void testGetMultiplierAtIntersect() {
+    void testCalculateMultiplierAtIntersect() {
         testDamageBoost.setBoost(235);
         assertEquals(3.35, testDamageBoost.getMultiplier());
     }
 
     @Test
-    void testGetMultiplierJustAboveIntersect() {
+    void testCalculateMultiplierJustAboveIntersect() {
         testDamageBoost.setBoost(236);
         assertEquals(3.36, testDamageBoost.getMultiplier(), 0.05);
     }
 
     @Test
-    void testGetMultiplierMuchAboveIntersect() {
+    void testCalculateMultiplierMuchAboveIntersect() {
         testDamageBoost.setBoost(260);
         assertEquals(3.39, testDamageBoost.getMultiplier(), 0.05);
     }

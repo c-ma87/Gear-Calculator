@@ -2,10 +2,14 @@ package main.model.stat;
 
 // formula for damage multiplier derived from https://finalbastion.com/wizard101-guides/w101-analysis/damage-resist-and-pierce-spring-2021/
 // and https://www.youtube.com/watch?v=zQbpogGOSgA
+
 // represents a boost to damage stat, calculated by the limit formula L - L / e^(k * boost + n)
+// for example, if boost = 30, outgoing damage will be 1.30 times after the boost is applied
 public class DamageBoost extends StatBoost {
     private double multiplier;
 
+    // REQUIRES: school is one of "life", "death", "myth", "ice", "fire",
+    // "storm", "balance" && boost >= 0
     // EFFECTS: constructs a damage boost with a boost value, school, and multiplier
     public DamageBoost(int boost, String school) {
         super(boost, school);
@@ -24,6 +28,8 @@ public class DamageBoost extends StatBoost {
         }
     }
 
+    // REQUIRES: boost >= 0
+    // MODIFIES: this
     // EFFECTS: sets this.boost to boost and re-calculates and sets multiplier
     @Override
     public void setBoost(int boost) {
