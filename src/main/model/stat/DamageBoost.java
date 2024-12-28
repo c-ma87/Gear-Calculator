@@ -18,13 +18,16 @@ public class DamageBoost extends StatBoost {
 
     // EFFECTS: returns multiplier as determined by the piecewise defined formula:
     // if boost <= 235, multiplier = boost/100 + 1
-    // if boost > 235, multiplier = 3 - 3 / (e^((1/500) * boost + ln(128) - 237 * (3.008/189))) + 1
+    // if boost > 235,
+    // multiplier = 3 - 3 / (e^((1/500) * boost + ln(128) - 237 * (3.008/189))) + 1
     @Override
     protected double calculateMultiplier() {
         if (getBoost() <= 235) {
             return (double) getBoost() / 100.0 + 1.0;
         } else {
-            return 3.0 - 3.0 / (Math.exp((1.0/500.0) * (double) getBoost() + Math.log(128.0) - 237.0 * (3.008/189.0))) + 1.0;
+            return 3.0
+                    - 3.0 / (Math.exp((1.0 / 500.0) * (double) getBoost() + Math.log(128.0) - 237.0 * (3.008 / 189.0)))
+                    + 1.0;
         }
     }
 

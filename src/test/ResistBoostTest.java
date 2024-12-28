@@ -19,7 +19,7 @@ public class ResistBoostTest {
     void testConstructor() {
         assertEquals(5, testResistBoost.getBoost());
         assertEquals("fire", testResistBoost.getSchool());
-        assertEquals(1.05, testResistBoost.getMultiplier());
+        assertEquals(0.95, testResistBoost.getMultiplier());
     }
 
     @Test

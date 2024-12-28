@@ -13,6 +13,7 @@ public class ResistBoost extends StatBoost {
     // EFFECTS: constructs a resist boost with a boost value, school, and multiplier
     public ResistBoost(int boost, String school) {
         super(boost, school);
+        multiplier = calculateMultiplier();
     }
 
     // EFFECTS: returns fraction (resist) multiplier determined by the formula:
@@ -20,18 +21,22 @@ public class ResistBoost extends StatBoost {
     // if multiplier < 0, returns 0.0
     @Override
     protected double calculateMultiplier() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calculateMultiplier'");
+        double multiplier = 1.0 - (double) getBoost() / 100;
+        if (multiplier < 0) {
+            return 0.0;
+        } else {
+            return multiplier;
+        }
     }
 
     // EFFECTS: sets this.boost to boost and re-calculates and sets multiplier
     @Override
     public void setBoost(int boost) {
         super.setBoost(boost);
-        // TODO
+        multiplier = calculateMultiplier();
     }
 
     public double getMultiplier() {
-        return 0.0;
+        return multiplier;
     }
 }
