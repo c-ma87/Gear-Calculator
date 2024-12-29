@@ -11,24 +11,23 @@ public class Tier {
 
     // EFFECTS: constructs a tier with a list of stat boosts
     public Tier() {
-        // TODO
+        statBoosts = new ArrayList<>();
     }
 
     // REQUIRES: statBoost != null
     // MODIFIES: this
     // EFFECTS: adds statBoost to statBoosts
     public void addStatBoost(StatBoost statBoost) {
-        // TODO
+        statBoosts.add(statBoost);
     }
 
     // MODIFIES: this
     // EFFECTS: removes statBoost from statBoosts
     public void removeStatBoost(StatBoost statBoost) {
-        // TODO
+        statBoosts.remove(statBoost);
     }
 
     public List<StatBoost> getStatBoosts() {
-        // TODO
-        return new ArrayList<>();
+        return statBoosts;
     }
 }
