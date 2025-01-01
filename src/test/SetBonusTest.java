@@ -19,19 +19,17 @@ public class SetBonusTest {
 
     @BeforeEach
     void runBefore() {
-        testSetBonus = new SetBonus();
+        testSetBonus = new SetBonus("Dragoon Set");
         tier1 = new Tier();
         tier2 = new Tier();
         tier3 = new Tier();
     }
-    
+
     @Test
     void testConstructor() {
-        List<Tier> tiers = testSetBonus.getTiers();
-        assertEquals(0, tiers.size());
-    
-        List<Integer> conditions = testSetBonus.getTierConditions();
-        assertEquals(0, conditions.size());
+        assertEquals("Dragoon Set", testSetBonus.getName());
+        assertEquals(0, testSetBonus.getTiers().size());
+        assertEquals(0, testSetBonus.getTierConditions().size());
     }
 
     @Test
@@ -70,9 +68,9 @@ public class SetBonusTest {
 
         testSetBonus.removeTier(tier1);
         assertEquals(1, tiers.size());
-        assertEquals(tier2, tiers.get(0));
+        assertEquals(tier3, tiers.get(0));
 
-        testSetBonus.removeTier(tier2);
+        testSetBonus.removeTier(tier3);
         assertEquals(0, tiers.size());
     }
 
@@ -108,9 +106,15 @@ public class SetBonusTest {
 
         testSetBonus.removeTierCondition(1);
         assertEquals(1, conditions.size());
-        assertEquals(10, conditions.get(0));
+        assertEquals(8, conditions.get(0));
 
         testSetBonus.removeTierCondition(0);
         assertEquals(0, conditions.size());
+    }
+
+    @Test
+    void testSetName() {
+        testSetBonus.setName("Celestian Totality Set");
+        assertEquals("Celestian Totality Set", testSetBonus.getName());
     }
 }

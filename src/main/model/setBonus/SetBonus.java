@@ -13,44 +13,54 @@ public class SetBonus {
     private List<Integer> tierConditions;
 
     // EFFECTS: constructs a set bonus with a name and no tiers
-    public SetBonus() {
-        // TODO
+    public SetBonus(String name) {
+        this.name = name;
+        tiers = new ArrayList<>();
+        tierConditions = new ArrayList<>();
     }
 
     // REQUIRES: tier != null
     // MODIFIES: this
     // EFFECTS: adds tier to tiers
     public void addTier(Tier tier) {
-        // TODO
+        tiers.add(tier);
     }
 
     // MODIFIES: this
     // EFFECTS: removes tier from tiers
     public void removeTier(Tier tier) {
-        // TODO
+        tiers.remove(tier);
     }
 
     // REQUIRES: condition >= 0
     // MODIFIES: this
     // EFFECTS: adds condition to tierConditions
     public void addTierCondition(int condition) {
-        // TODO
+        tierConditions.add(condition);
     }
 
     // REQUIRES: conditions.size() > 0 && 0 <= condition <= conditions.size() - 1
     // MODIFIES: this
     // EFFECTS: removes condition with index tierNum from conditions
     public void removeTierCondition(int tierNum) {
-        // TODO
+        tierConditions.remove(tierNum);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets this.name to name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public List<Tier> getTiers() {
-        // TODO
-        return new ArrayList<>();
+        return tiers;
     }
 
     public List<Integer> getTierConditions() {
-        // TODO
-        return new ArrayList<>();
+        return tierConditions;
     }
 }
