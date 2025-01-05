@@ -4,7 +4,7 @@ package main.model;
 public class StatBoost {
     private int boost;
     private String school;
-    private String name;
+    private String type;
 
     // REQUIRES: school is one of "life", "death", "myth", "ice", "fire",
     // "storm", "balance" && boost >= 0
@@ -12,7 +12,7 @@ public class StatBoost {
     public StatBoost(int boost, String school, String name) {
         this.boost = boost;
         this.school = school;
-        this.name = name;
+        this.type = name;
     }
 
     // REQUIRES: boost >= 0
@@ -30,7 +30,7 @@ public class StatBoost {
         return school;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 }

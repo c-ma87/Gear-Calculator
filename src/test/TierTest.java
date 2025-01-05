@@ -36,16 +36,16 @@ public class TierTest {
         assertEquals(1, boosts.size());
         assertEquals(10, boosts.get(0).getBoost());
         assertEquals("fire", boosts.get(0).getSchool());
-        assertEquals("damage", boosts.get(0).getName());
+        assertEquals("damage", boosts.get(0).getType());
 
         testTier.addStatBoost(boost2);
         assertEquals(2, boosts.size());
         assertEquals(10, boosts.get(0).getBoost());
         assertEquals("fire", boosts.get(0).getSchool());
-        assertEquals("damage", boosts.get(0).getName());
+        assertEquals("damage", boosts.get(0).getType());
         assertEquals(3, boosts.get(1).getBoost());
         assertEquals("storm", boosts.get(1).getSchool());
-        assertEquals("resist", boosts.get(1).getName());
+        assertEquals("resist", boosts.get(1).getType());
     }
 
     @Test

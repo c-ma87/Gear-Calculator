@@ -42,7 +42,7 @@ public class SetBonusTest {
         assertEquals(1, tiers.size());
         assertEquals(3, tiers.get(0).getStatBoosts().get(0).getBoost());
         assertEquals("life", tiers.get(0).getStatBoosts().get(0).getSchool());
-        assertEquals("accuracy", tiers.get(0).getStatBoosts().get(0).getName());
+        assertEquals("accuracy", tiers.get(0).getStatBoosts().get(0).getType());
 
         testSetBonus.addTier(tier2);
         testSetBonus.addTier(tier3);
