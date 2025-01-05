@@ -48,20 +48,34 @@ public class GearItemTest {
     }
 
     @Test
-    void testAddStatBoostSameType() {
+    void testAddStatBoostSameTypeAndSchool() {
         List<StatBoost> stats = testGearItem.getStats();
         
+        testGearItem.addStatBoost(new StatBoost(8, "death", "pierce"));
         testGearItem.addStatBoost(new StatBoost(2, "death", "damage"));
-        assertEquals(2, stats.size());
-        assertEquals(3, stats.get(0).getBoost());
+        testGearItem.addStatBoost(new StatBoost(3, "life", "damage"));
+        assertEquals(3, stats.size());
+        assertEquals(8, stats.get(0).getBoost());
         assertEquals("death", stats.get(0).getSchool());
-        assertEquals("damage", stats.get(0).getType());
+        assertEquals("pierce", stats.get(0).getType());
+        assertEquals(2, stats.get(1).getBoost());
+        assertEquals("death", stats.get(1).getSchool());
+        assertEquals("damage", stats.get(1).getType());
+        assertEquals(3, stats.get(2).getBoost());
+        assertEquals("life", stats.get(2).getSchool());
+        assertEquals("damage", stats.get(2).getType());
 
-        testGearItem.addStatBoost(new StatBoost(5, "balance", "damage"));
-        assertEquals(1, stats.size());
-        assertEquals(5, stats.get(0).getBoost());
-        assertEquals("balance", stats.get(0).getSchool());
-        assertEquals("damage", stats.get(0).getType());
+        testGearItem.addStatBoost(new StatBoost(5, "death", "damage"));
+        assertEquals(3, stats.size());
+        assertEquals(8, stats.get(0).getBoost());
+        assertEquals("death", stats.get(0).getSchool());
+        assertEquals("pierce", stats.get(0).getType());
+        assertEquals(5, stats.get(1).getBoost());
+        assertEquals("death", stats.get(1).getSchool());
+        assertEquals("damage", stats.get(1).getType());
+        assertEquals(3, stats.get(2).getBoost());
+        assertEquals("life", stats.get(2).getSchool());
+        assertEquals("damage", stats.get(2).getType());
     }
 
     @Test

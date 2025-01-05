@@ -12,45 +12,62 @@ public class GearItem {
     private List<StatBoost> stats;
     private SetBonus setBonus;
 
-    // EFFECTS: constructs a gear item with a name and type, and an empty list of stat boosts
+    // EFFECTS: constructs a gear item with a name and type, and an empty list of
+    // stat boosts
     public GearItem(String name, String type) {
-        // TODO
+        this.name = name;
+        this.type = type;
+        stats = new ArrayList<>();
+        setBonus = null;
     }
 
     // MODIFIES: this
-    // EFFECTS: if statBoost with the same type is not already in stats, adds statBoost to stats,
-    // otherwise replaces statBoost in stats with the same type 
+    // EFFECTS: if statBoost with the same type and school is not already in stats,
+    // adds statBoost to stats, otherwise replaces stat boost in stats with the
+    // same type and school with statBoost
     public void addStatBoost(StatBoost statBoost) {
-        // TODO
+        if (!stats.contains(statBoost)) {
+            stats.add(statBoost);
+        } else {
+            replaceStatBoost(statBoost);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: replaces stat boost in stats with the same school
+    // and type as statBoost
+    private void replaceStatBoost(StatBoost statBoost) {
+        for (int index = 0; index < stats.size(); index++) {
+            if (stats.get(index).equals(statBoost)) {
+                stats.remove(index);
+                stats.add(index, statBoost);
+            }
+        }
     }
 
     public void setSetBonus(SetBonus setBonus) {
-        // TODO
+        this.setBonus = setBonus;
     }
 
     // MODIFIES: this
     // EFFECTS: sets setBonus to null
     public void removeSetBonus() {
-        // TODO
+        setBonus = null;
     }
 
     public String getName() {
-        // TODO
-        return "";
+        return name;
     }
 
     public String getType() {
-        // TODO
-        return "";
+        return type;
     }
 
     public List<StatBoost> getStats() {
-        // TODO
-        return new ArrayList<>();
+        return stats;
     }
 
     public SetBonus getSetBonus() {
-        // TODO
-        return null;
+        return setBonus;
     }
 }
