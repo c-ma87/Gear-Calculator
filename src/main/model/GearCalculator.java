@@ -36,25 +36,32 @@ public class GearCalculator {
         }
     }
 
-    // REQUIRES: crit >= 0
-    // EFFECTS: returns damage multiplier as determined by the formula:
-    // multiplier = 1.52 * critBlockRatio / (critBlockRatio + 0.167)
-    public double calculateCritDmgMultiplier(int critBlockRatio) {
+    // REQUIRES: playerCrit, enemyBlock >= 0
+    // EFFECTS: returns damage multiplier as determined by the piecewise formula:
+    // if enemyBlock = 0: multiplier = 2.0,
+    // if enemyBlock > 0: multiplier = 1.52 * (playerCrit / enemyBlock) /
+    // ((playerCrit / enemyBlock) + 0.167)
+    public double calculateCritDmgMultiplier(int playerCrit, int enemyBlock) {
         // TODO
         return 0.0;
     }
 
     // REQUIRES: crit >= 0
-    // EFFECTS: returns critical strike chance as determined by the formula:
-    // chance = 1.01 * critBlockRatio / (critBlockRatio + 0.34)
-    public double calculateCritChanceMultiplier(int critBlockRatio) {
+    // EFFECTS: if playerCrit > 0, returns critical strike chance as determined by
+    // the piecewise formula:
+    // if enemyBlock == 0: chance = max(playerLevel / 100, 0.95)
+    // if enemyBlock > 0: 
+    // chance = (playerLevel/100 - 1.01 * critBlockRatio/(critBlockRatio + 0.34)) * (1 - max(0.95 - playerLevel/100, 0.0))
+    // where critBlockRatio = playerCrit/enemyBlock
+    // otherwise returns 0.0
+    public double calculateCritChanceMultiplier(int playerCrit, int enemyBlock, int playerLevel) {
         // TODO
         return 0.0;
     }
 
     // REQUIRES: accuracy >= 0
     // EFFECTS: returns boosted accuracy as determined by:
-    // boosted accuracy = accuracy / 100
+    // boosted accuracy = min(accuracy / 100, 1.0)
     public double calculateAccuracy(int accuracy) {
         // TODO
         return 0.0;
@@ -62,16 +69,16 @@ public class GearCalculator {
 
     // REQUIRES: powerPip >= 0
     // EFFECTS: returns power pip conversion rate as determined by:
-    // power pip conversion = powerPip / 100
-    public double powerPipConversionRate(int powerPip) {
+    // power pip conversion = min(powerPip / 100, 1.0)
+    public double calculatePowerPipConversionRate(int powerPip) {
         // TODO
         return 0.0;
     }
 
-    // REQUIRES: pierceResistDifference, shield >= 0
+    // REQUIRES: shield >= 0
     // EFFECTS: returns pierce damage multiplier as determined by:
-    // multiplier = pierceResistShieldDifference / 100
-    public double pierceMultiplier(int pierceResistShieldDifference) {
+    // multiplier = max(1 + pierceResistShieldDifference / 100, 0.0)
+    public double calculatePierceMultiplier(int pierceResistShieldDifference) {
         // TODO
         return 0.0;
     }

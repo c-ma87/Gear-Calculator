@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import main.model.GearCalculator;
 
 public class GearCalculatorTest {
+    private static final double DELTA = 0.0001;
     private GearCalculator testGearCalculator;
 
     @BeforeEach
@@ -46,5 +47,47 @@ public class GearCalculatorTest {
         assertEquals(0.90, testGearCalculator.calculateResistMultiplier(10));
         assertEquals(0.0, testGearCalculator.calculateResistMultiplier(100));
         assertEquals(0.0, testGearCalculator.calculateResistMultiplier(110));
+    }
+
+    @Test
+    void testCalculateCritDmgMultiplier() {
+        assertEquals(2.0, testGearCalculator.calculateCritDmgMultiplier(0, 0));
+        assertEquals(2.0, testGearCalculator.calculateCritDmgMultiplier(3, 0));
+        assertEquals(1.3025, testGearCalculator.calculateCritDmgMultiplier(1, 1), DELTA);
+        assertEquals(1.1394, testGearCalculator.calculateCritDmgMultiplier(1, 2), DELTA);
+        assertEquals(1.1394, testGearCalculator.calculateCritDmgMultiplier(15, 30), DELTA);
+    }
+
+    @Test
+    void testCalculateCritChanceMultiplier() {
+        assertEquals(0.0, testGearCalculator.calculateCritChanceMultiplier(0, 0, 0));
+        assertEquals(0.0, testGearCalculator.calculateCritChanceMultiplier(0, 5, 10));
+        assertEquals(0.95, testGearCalculator.calculateCritChanceMultiplier(1, 0, 95));
+        assertEquals(0.95, testGearCalculator.calculateCritChanceMultiplier(100, 0, 96));
+        assertEquals(0.95, testGearCalculator.calculateCritChanceMultiplier(100, 0, 96));
+        assertEquals(0.60119, testGearCalculator.calculateCritChanceMultiplier(100, 200, 96), DELTA);
+        assertEquals(0.60119, testGearCalculator.calculateCritChanceMultiplier(100, 200, 95), DELTA);
+        assertEquals(0.30214, testGearCalculator.calculateCritChanceMultiplier(10, 5, 30), DELTA);
+    }
+
+    @Test
+    void testCalculateAccuracy() {
+        assertEquals(0.0, testGearCalculator.calculateAccuracy(0));
+        assertEquals(0.9, testGearCalculator.calculateAccuracy(90));
+        assertEquals(1.0, testGearCalculator.calculateAccuracy(390));
+    }
+
+    @Test
+    void testCalculatePowerPipConversionRate() {
+        assertEquals(0.0, testGearCalculator.calculatePowerPipConversionRate(0));
+        assertEquals(0.9, testGearCalculator.calculatePowerPipConversionRate(90));
+        assertEquals(1.0, testGearCalculator.calculatePowerPipConversionRate(240));
+    }
+
+    @Test
+    void testCalculatePierceMultiplier() {
+        assertEquals(0.0, testGearCalculator.calculatePierceMultiplier(0));
+        assertEquals(1.9, testGearCalculator.calculatePierceMultiplier(90));
+        assertEquals(0.25, testGearCalculator.calculatePierceMultiplier(-75));
     }
 }
