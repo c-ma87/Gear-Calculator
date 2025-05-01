@@ -86,7 +86,8 @@ public class GearCalculatorTest {
 
     @Test
     void testCalculatePierceMultiplier() {
-        assertEquals(0.0, testGearCalculator.calculatePierceMultiplier(0));
+        assertEquals(1.0, testGearCalculator.calculatePierceMultiplier(0));
+        assertEquals(0.0, testGearCalculator.calculatePierceMultiplier(-1000));
         assertEquals(1.9, testGearCalculator.calculatePierceMultiplier(90));
         assertEquals(0.25, testGearCalculator.calculatePierceMultiplier(-75));
     }

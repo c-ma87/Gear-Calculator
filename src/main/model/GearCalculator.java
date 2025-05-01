@@ -5,7 +5,6 @@ public class GearCalculator {
 
     // EFFECTS: constructs a gear calculator with stat calculation formulas
     public GearCalculator() {
-        // TODO
     }
 
     // REQUIRES: damage >= 0
@@ -39,23 +38,38 @@ public class GearCalculator {
     // REQUIRES: playerCrit, enemyBlock >= 0
     // EFFECTS: returns damage multiplier as determined by the piecewise formula:
     // if enemyBlock = 0: multiplier = 2.0,
-    // if enemyBlock > 0: multiplier = 1.52 * (playerCrit / enemyBlock) /
-    // ((playerCrit / enemyBlock) + 0.167)
+    // else (enemyBlock > 0):
+    // multiplier = 1.52 * (playerCrit / enemyBlock) / ((playerCrit / enemyBlock) +
+    // 0.167)
     public double calculateCritDmgMultiplier(int playerCrit, int enemyBlock) {
-        // TODO
-        return 0.0;
+        if (enemyBlock == 0) {
+            return 2.0;
+        } else {
+            return 1.52 * ((double) playerCrit / (double) enemyBlock)
+                    / (((double) playerCrit / (double) enemyBlock) + 0.167);
+        }
     }
 
-    // REQUIRES: crit >= 0
+    // REQUIRES: playerCrit, enemyBlock, playerLevel >= 0
     // EFFECTS: if playerCrit > 0, returns critical strike chance as determined by
     // the piecewise formula:
     // if enemyBlock == 0: chance = max(playerLevel / 100, 0.95)
-    // if enemyBlock > 0: 
-    // chance = (playerLevel/100 - 1.01 * critBlockRatio/(critBlockRatio + 0.34)) * (1 - max(0.95 - playerLevel/100, 0.0))
+    // if enemyBlock > 0:
+    // chance = (1.01 * critBlockRatio/(critBlockRatio + 0.34)) *
+    // (1 - max(0.95 - playerLevel/100, 0.0))
     // where critBlockRatio = playerCrit/enemyBlock
     // otherwise returns 0.0
     public double calculateCritChanceMultiplier(int playerCrit, int enemyBlock, int playerLevel) {
-        // TODO
+        if (playerCrit > 0) {
+            if (enemyBlock == 0) {
+                return Math.max(playerLevel / 100, 0.95);
+            } else if (enemyBlock > 0) {
+                double critBlockRatio = (double) playerCrit / (double) enemyBlock;
+                return (1.01 * critBlockRatio / (critBlockRatio + 0.34))
+                        * (1 - Math.max(0.95 - (double) playerLevel / 100, 0.0));
+            }
+        }
+
         return 0.0;
     }
 
@@ -63,23 +77,21 @@ public class GearCalculator {
     // EFFECTS: returns boosted accuracy as determined by:
     // boosted accuracy = min(accuracy / 100, 1.0)
     public double calculateAccuracy(int accuracy) {
-        // TODO
-        return 0.0;
+        return Math.min((double) accuracy / 100, 1.0);
     }
 
     // REQUIRES: powerPip >= 0
     // EFFECTS: returns power pip conversion rate as determined by:
     // power pip conversion = min(powerPip / 100, 1.0)
     public double calculatePowerPipConversionRate(int powerPip) {
-        // TODO
-        return 0.0;
+        return Math.min((double) powerPip / 100, 1.0);
     }
 
-    // REQUIRES: shield >= 0
+    // REQUIRES: pierceResistShieldDifference >= 0
     // EFFECTS: returns pierce damage multiplier as determined by:
     // multiplier = max(1 + pierceResistShieldDifference / 100, 0.0)
+    // (pierceResistShieldDifference is attackerPierce - enemyResist - enemyShield)
     public double calculatePierceMultiplier(int pierceResistShieldDifference) {
-        // TODO
-        return 0.0;
+        return Math.max(1 + (double) pierceResistShieldDifference / 100, 0.0);
     }
 }
