@@ -8,47 +8,52 @@ public class Spell {
     boolean aoe;
 
     // EFFECTS: creates a spell with a name and stats
-    public Spell() {
+    public Spell(int damage, int healing, int shield, int ward, boolean aoe) {
         // TODO
     }
 
-    public void setDamage() {
+    public void setDamage(int damage) {
         // TODO
     }
 
-    public void setHealing() {
+    public void setHealing(int healing) {
         // TODO
     }
 
-    public void setShield() {
+    public void setShield(int shield) {
         // TODO
     }
 
-    public void setWard() {
+    public void setWard(int ward) {
         // TODO
     }
 
-    public void setAoe() {
+    public void setAoe(boolean aoe) {
         // TODO
     }
 
-    public void getDamage() {
+    public int getDamage() {
         // TODO
+        return 0;
     }
 
-    public void getHealing() {
+    public int getHealing() {
         // TODO
+        return 0;
     }
 
-    public void getShield() {
+    public int getShield() {
         // TODO
+        return 0;
     }
 
-    public void getWard() {
+    public int getWard() {
         // TODO
+        return 0;
     }
 
-    public void getAoe() {
+    public boolean getAoe() {
         // TODO
+        return false;
     }
 }
