@@ -9,51 +9,50 @@ public class Spell {
 
     // EFFECTS: creates a spell with a name and stats
     public Spell(int damage, int healing, int shield, int ward, boolean aoe) {
-        // TODO
+        this.damage = damage;
+        this.healing = healing;
+        this.shield = shield;
+        this.ward = ward;
+        this.aoe = aoe;
     }
 
     public void setDamage(int damage) {
-        // TODO
+        this.damage = damage;
     }
 
     public void setHealing(int healing) {
-        // TODO
+        this.healing = healing;
     }
 
     public void setShield(int shield) {
-        // TODO
+        this.shield = shield;
     }
 
     public void setWard(int ward) {
-        // TODO
+        this.ward = ward;
     }
 
     public void setAoe(boolean aoe) {
-        // TODO
+        this.aoe = aoe;
     }
 
     public int getDamage() {
-        // TODO
-        return 0;
+        return damage;
     }
 
     public int getHealing() {
-        // TODO
-        return 0;
+        return healing;
     }
 
     public int getShield() {
-        // TODO
-        return 0;
+        return shield;
     }
 
     public int getWard() {
-        // TODO
-        return 0;
+        return ward;
     }
 
     public boolean getAoe() {
-        // TODO
-        return false;
+        return aoe;
     }
 }
