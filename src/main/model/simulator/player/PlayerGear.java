@@ -16,96 +16,95 @@ public class PlayerGear {
 
     public PlayerGear(GearItem hat, GearItem robe, GearItem boots, GearItem wand, GearItem athame,
             GearItem amulet, GearItem ring, GearItem deck, GearItem pet, GearItem mount) {
-        // TODO
+        this.hat = hat;
+        this.robe = robe;
+        this.boots = boots;
+        this.wand = wand;
+        this.athame = athame;
+        this.amulet = amulet;
+        this.ring = ring;
+        this.deck = deck;
+        this.pet = pet;
+        this.mount = mount;
     }
 
     public void setHat(GearItem hat) {
-        // TODO
+        this.hat = hat;
     }
 
     public void setRobe(GearItem robe) {
-        // TODO
+        this.robe = robe;
     }
 
     public void setBoots(GearItem boots) {
-        // TODO
+        this.boots = boots;
     }
 
     public void setWand(GearItem wand) {
-        // TODO
+        this.wand = wand;
     }
 
     public void setAthame(GearItem athame) {
-        // TODO
+        this.athame = athame;
     }
 
     public void setAmulet(GearItem amulet) {
-        // TODO
+        this.amulet = amulet;
     }
 
     public void setRing(GearItem ring) {
-        // TODO
+        this.ring = ring;
     }
 
     public void setDeck(GearItem deck) {
-        // TODO
+        this.deck = deck;
     }
 
     public void setPet(GearItem pet) {
-        // TODO
+        this.pet = pet;
     }
 
     public void setMount(GearItem mount) {
-        // TODO
+        this.mount = mount;
     }
 
     public GearItem getHat() {
-        // TODO
-        return null;
+        return hat;
     }
 
     public GearItem getRobe() {
-        // TODO
-        return null;
+        return robe;
     }
 
     public GearItem getBoots() {
-        // TODO
-        return null;
+        return boots;
     }
 
     public GearItem getWand() {
-        // TODO
-        return null;
+        return wand;
     }
 
     public GearItem getAthame() {
-        // TODO
-        return null;
+        return athame;
     }
 
     public GearItem getAmulet() {
-        // TODO
-        return null;
+        return amulet;
     }
 
     public GearItem getRing() {
-        // TODO
-        return null;
+        return ring;
     }
 
     public GearItem getDeck() {
-        // TODO
-        return null;
+        return deck;
     }
 
     public GearItem getPet() {
-        // TODO
-        return null;
+        return pet;
     }
 
     public GearItem getMount() {
-        // TODO
-        return null;
+        return mount;
     }
 }
