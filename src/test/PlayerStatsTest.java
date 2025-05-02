@@ -12,7 +12,7 @@ public class PlayerStatsTest {
 
     @BeforeEach
     void runBefore() {
-        stats = new PlayerStats(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        stats = new PlayerStats(0, 0, 0);
     }
 
     @Test

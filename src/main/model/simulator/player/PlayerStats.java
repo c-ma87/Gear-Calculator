@@ -14,83 +14,90 @@ public class PlayerStats {
     private HashMap<String, Integer> accuracy;
     private HashMap<String, Integer> pierce;
 
-    public PlayerStats(int level, int health, int mana, int damage, int resist, int critical, int block, int accuracy,
-            int powerPip, int pierce) {
-        // TODO
+    public PlayerStats(int level, int health, int mana) {
+        this.level = level;
+        this.health = health;
+        this.mana = mana;
+        damage = new HashMap<>();
+        resist = new HashMap<>();
+        critical = new HashMap<>();
+        block = new HashMap<>();
+        accuracy = new HashMap<>();
+        pierce = new HashMap<>();
     }
 
     public void setLevel(int level) {
-        // TODO
+        this.level = level;
     }
 
     public void setHealth(int health) {
-        // TODO
+        this.health = health;
     }
 
     public void setMana(int mana) {
-        // TODO
+        this.mana = mana;
     }
 
     public void setPowerPip(int powerPip) {
-        // TODO
+        this.powerPip = powerPip;
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
     // or "balance"
     // EFFECTS: sets damage stat with associated school to damage
     public void setDamage(int damage, String school) {
-        // TODO
+        this.damage.put(school, damage);
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
     // or "balance"
     // EFFECTS: sets resist stat with associated school to resist
     public void setResist(int resist, String school) {
-        // TODO
+        this.resist.put(school, resist);
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
     // or "balance"
     // EFFECTS: sets critical stat with associated school to critical
     public void setCritical(int critical, String school) {
-        // TODO
+        this.critical.put(school, critical);
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
     // or "balance"
     // EFFECTS: sets block stat with associated school to block
     public void setBlock(int block, String school) {
-        // TODO
+        this.block.put(school, block);
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
     // or "balance"
     // EFFECTS: sets accuracy stat with associated school to accuracy
     public void setAccuracy(int accuracy, String school) {
-        // TODO
+        this.accuracy.put(school, accuracy);
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
     // or "balance"
     // EFFECTS: sets pierce stat with associated school to pierce
     public void setPierce(int pierce, String school) {
-        // TODO
+        this.pierce.put(school, pierce);
     }
 
     public int getLevel() {
-        return 0;
+        return level;
     }
 
     public int getHealth() {
-        return 0;
+        return health;
     }
 
     public int getMana() {
-        return 0;
+        return mana;
     }
 
     public int getPowerPip() {
-        return 0;
+        return powerPip;
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
@@ -98,7 +105,11 @@ public class PlayerStats {
     // EFFECTS: if damage stat with associated school exists, returns the stat value
     // otherwise returns 0
     public int getDamage(String school) {
-        return 0;
+        if (damage.containsKey(school)) {
+            return damage.get(school);
+        } else {
+            return 0;
+        }
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
@@ -106,15 +117,24 @@ public class PlayerStats {
     // EFFECTS: if resist stat with associated school exists, returns the stat value
     // otherwise returns 0
     public int getResist(String school) {
-        return 0;
+        if (resist.containsKey(school)) {
+            return resist.get(school);
+        } else {
+            return 0;
+        }
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
     // or "balance"
-    // EFFECTS: if critical stat with associated school exists, returns the stat value
+    // EFFECTS: if critical stat with associated school exists, returns the stat
+    // value
     // otherwise returns 0
     public int getCritical(String school) {
-        return 0;
+        if (critical.containsKey(school)) {
+            return critical.get(school);
+        } else {
+            return 0;
+        }
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
@@ -122,15 +142,24 @@ public class PlayerStats {
     // EFFECTS: if block stat with associated school exists, returns the stat value
     // otherwise returns 0
     public int getBlock(String school) {
-        return 0;
+        if (block.containsKey(school)) {
+            return block.get(school);
+        } else {
+            return 0;
+        }
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
     // or "balance"
-    // EFFECTS: if accuracy stat with associated school exists, returns the stat value
+    // EFFECTS: if accuracy stat with associated school exists, returns the stat
+    // value
     // otherwise returns 0
     public int getAccuracy(String school) {
-        return 0;
+        if (accuracy.containsKey(school)) {
+            return accuracy.get(school);
+        } else {
+            return 0;
+        }
     }
 
     // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
@@ -138,6 +167,10 @@ public class PlayerStats {
     // EFFECTS: if pierce stat with associated school exists, returns the stat value
     // otherwise returns 0
     public int getPierce(String school) {
-        return 0;
+        if (pierce.containsKey(school)) {
+            return pierce.get(school);
+        } else {
+            return 0;
+        }
     }
 }
