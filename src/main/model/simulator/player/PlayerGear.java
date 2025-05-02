@@ -14,39 +14,48 @@ public class PlayerGear {
     private GearItem pet;
     private GearItem mount;
 
-    public PlayerGear() {
+    public PlayerGear(GearItem hat, GearItem robe, GearItem boots, GearItem wand, GearItem athame,
+            GearItem amulet, GearItem ring, GearItem deck, GearItem pet, GearItem mount) {
         // TODO
     }
 
-    public void setHat() {
+    public void setHat(GearItem hat) {
         // TODO
     }
 
-    public void setRobe() {
+    public void setRobe(GearItem robe) {
         // TODO
     }
-    public void setBoots() {
+
+    public void setBoots(GearItem boots) {
         // TODO
     }
-    public void setWand() {
+
+    public void setWand(GearItem wand) {
         // TODO
     }
-    public void setAthame() {
+
+    public void setAthame(GearItem athame) {
         // TODO
     }
-    public void setAmulet() {
+
+    public void setAmulet(GearItem amulet) {
         // TODO
     }
-    public void setRing() {
+
+    public void setRing(GearItem ring) {
         // TODO
     }
-    public void setDeck() {
+
+    public void setDeck(GearItem deck) {
         // TODO
     }
-    public void setPet() {
+
+    public void setPet(GearItem pet) {
         // TODO
     }
-    public void setMount() {
+
+    public void setMount(GearItem mount) {
         // TODO
     }
 
