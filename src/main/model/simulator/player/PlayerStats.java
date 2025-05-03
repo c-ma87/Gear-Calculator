@@ -3,172 +3,97 @@ package main.model.simulator.player;
 import java.util.HashMap;
 
 public class PlayerStats {
-    private int level;
     private int health;
     private int mana;
     private int powerPip;
-    private HashMap<String, Integer> damage;
-    private HashMap<String, Integer> resist;
-    private HashMap<String, Integer> critical;
-    private HashMap<String, Integer> block;
-    private HashMap<String, Integer> accuracy;
-    private HashMap<String, Integer> pierce;
 
+    private HashMap<String, HashMap<String, Integer>> playerStats;
+
+    // EFFECTS: constructs player stats with initial level, health, mana, and empty
+    // boost stats
     public PlayerStats(int level, int health, int mana) {
-        this.level = level;
-        this.health = health;
-        this.mana = mana;
-        damage = new HashMap<>();
-        resist = new HashMap<>();
-        critical = new HashMap<>();
-        block = new HashMap<>();
-        accuracy = new HashMap<>();
-        pierce = new HashMap<>();
+        playerStats = new HashMap<>();
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    // MODIFIES: this
+    // EFFECTS: if type is "health", "mana", or "power pip", sets value of said type
+    // to boost
+    // else if stat associated with type and school do not already exist in
+    // playerStats,
+    // adds new stat with type and school to stats, with value boost
+    // else adds boost to stat associated with type and school
+    public void updateStats(String type, String school, int boost) {
+        if (type == "health") {
+            health = boost;
+        } else if (type == "mana") {
+            mana = boost;
+        } else if (type == "power pip") {
+            powerPip = boost;
+        } else {
+            updateStat(type, school, boost);
+        }
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    // MODIFIES: this
+    // EFFECTS: if stat associated with type and school do not already exist in
+    // playerStats,
+    // adds new stat with type and school to stats, with value boost
+    // else adds boost to stat associated with type and school
+    private void updateStat(String type, String school, int boost) {
+        HashMap<String, Integer> stat;
+        if (!playerStats.containsKey(type)) {
+            stat = new HashMap<>();
+            playerStats.put(type, stat);
+        } else {
+            stat = playerStats.get(type);
+        }
+        modifyStat(stat, school, boost);
     }
 
-    public void setMana(int mana) {
-        this.mana = mana;
+    // MODIFIES: this
+    // EFFECTS: if stat associated with school does not already exist in stat,
+    // adds new school stat to stat, with value boost
+    // else sums the current stat value with boost, and updates value
+    private void modifyStat(HashMap<String, Integer> stat, String school, int boost) {
+        if (!stat.containsKey(school)) {
+            stat.put(school, boost);
+        } else {
+            stat.put(school, boost + stat.get(school));
+        }
     }
 
-    public void setPowerPip(int powerPip) {
-        this.powerPip = powerPip;
+    // EFFECTS: if type is "health", "mana", or "power pip", gets value of said type
+    // otherwise if stat with associated type and school exists in playerStats,
+    // returns boost value of associated stat
+    // else returns 0
+    public int getStat(String type, String school) {
+        if (type == "health") {
+            return health;
+        } else if (type == "mana") {
+            return mana;
+        } else if (type == "power pip") {
+            return powerPip;
+        }
+        return findStat(type, school);
     }
 
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: sets damage stat with associated school to damage
-    public void setDamage(int damage, String school) {
-        this.damage.put(school, damage);
-    }
-
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: sets resist stat with associated school to resist
-    public void setResist(int resist, String school) {
-        this.resist.put(school, resist);
-    }
-
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: sets critical stat with associated school to critical
-    public void setCritical(int critical, String school) {
-        this.critical.put(school, critical);
-    }
-
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: sets block stat with associated school to block
-    public void setBlock(int block, String school) {
-        this.block.put(school, block);
-    }
-
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: sets accuracy stat with associated school to accuracy
-    public void setAccuracy(int accuracy, String school) {
-        this.accuracy.put(school, accuracy);
-    }
-
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: sets pierce stat with associated school to pierce
-    public void setPierce(int pierce, String school) {
-        this.pierce.put(school, pierce);
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public int getMana() {
-        return mana;
-    }
-
-    public int getPowerPip() {
-        return powerPip;
-    }
-
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: if damage stat with associated school exists, returns the stat value
-    // otherwise returns 0
-    public int getDamage(String school) {
-        if (damage.containsKey(school)) {
-            return damage.get(school);
+    // EFFECTS: if stat with associated type and school exists in playerStats,
+    // returns boost value of associated stat
+    // else returns 0
+    private int findStat(String type, String school) {
+        if (playerStats.containsKey(type)) {
+            return findStat(playerStats.get(type), school);
         } else {
             return 0;
         }
     }
 
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: if resist stat with associated school exists, returns the stat value
-    // otherwise returns 0
-    public int getResist(String school) {
-        if (resist.containsKey(school)) {
-            return resist.get(school);
-        } else {
-            return 0;
-        }
-    }
-
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: if critical stat with associated school exists, returns the stat
-    // value
-    // otherwise returns 0
-    public int getCritical(String school) {
-        if (critical.containsKey(school)) {
-            return critical.get(school);
-        } else {
-            return 0;
-        }
-    }
-
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: if block stat with associated school exists, returns the stat value
-    // otherwise returns 0
-    public int getBlock(String school) {
-        if (block.containsKey(school)) {
-            return block.get(school);
-        } else {
-            return 0;
-        }
-    }
-
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: if accuracy stat with associated school exists, returns the stat
-    // value
-    // otherwise returns 0
-    public int getAccuracy(String school) {
-        if (accuracy.containsKey(school)) {
-            return accuracy.get(school);
-        } else {
-            return 0;
-        }
-    }
-
-    // REQUIRES: school is one of "fire", "ice", "myth", "storm", "life", "death",
-    // or "balance"
-    // EFFECTS: if pierce stat with associated school exists, returns the stat value
-    // otherwise returns 0
-    public int getPierce(String school) {
-        if (pierce.containsKey(school)) {
-            return pierce.get(school);
+    // EFFECTS: if stat with associated school exists in stat, returns boost value
+    // of associated stat
+    // else returns 0
+    private int findStat(HashMap<String, Integer> stat, String school) {
+        if (stat.containsKey(school)) {
+            return stat.get(school);
         } else {
             return 0;
         }

@@ -16,87 +16,42 @@ public class PlayerStatsTest {
     }
 
     @Test
-    void testBasicSettersGetters() {
-        stats.setLevel(100);
-        stats.setHealth(3000);
-        stats.setMana(1000);
-        stats.setPowerPip(95);
-
-        assertEquals(100, stats.getLevel());
-        assertEquals(3000, stats.getHealth());
-        assertEquals(1000, stats.getMana());
-        assertEquals(95, stats.getPowerPip());
+    void testUpdateStatsHealth() {
+        assertEquals(0, stats.getStat("health", "abc"));
+        stats.updateStats("health", "def", 100);
+        assertEquals(100, stats.getStat("health", "abc"));
     }
 
     @Test
-    void testSetDamage() {
-        stats.setDamage(100, "life");
-        assertEquals(100, stats.getDamage("life"));
-        assertEquals(0, stats.getDamage("death"));
-
-        stats.setDamage(20, "life");
-        assertEquals(20, stats.getDamage("life"));
-        stats.setDamage(30, "death");
-        assertEquals(30, stats.getDamage("death"));
+    void testUpdateStatsMana() {
+        assertEquals(0, stats.getStat("mana", "abc"));
+        stats.updateStats("mana", "def", 150);
+        assertEquals(150, stats.getStat("mana", "abc"));
     }
 
     @Test
-    void testSetResist() {
-        stats.setResist(100, "life");
-        assertEquals(100, stats.getResist("life"));
-        assertEquals(0, stats.getResist("death"));
-
-        stats.setResist(20, "life");
-        assertEquals(20, stats.getResist("life"));
-        stats.setResist(30, "death");
-        assertEquals(30, stats.getResist("death"));
+    void testUpdateStatsPowerPip() {
+        assertEquals(0, stats.getStat("power pip", "abc"));
+        stats.updateStats("power pip", "def", 150);
+        assertEquals(150, stats.getStat("power pip", "abc"));
     }
 
     @Test
-    void testSetCritical() {
-        stats.setCritical(100, "life");
-        assertEquals(100, stats.getCritical("life"));
-        assertEquals(0, stats.getCritical("death"));
+    void testUpdateStatsNewStat() {
+        assertEquals(0, stats.getStat("damage", "life"));
+        stats.updateStats("damage", "life", 300);
+        assertEquals(300, stats.getStat("damage", "life"));
 
-        stats.setCritical(20, "life");
-        assertEquals(20, stats.getCritical("life"));
-        stats.setCritical(30, "death");
-        assertEquals(30, stats.getCritical("death"));
-    }
+        assertEquals(0, stats.getStat("damage", "fire"));
+        stats.updateStats("damage", "fire", 10);
+        assertEquals(10, stats.getStat("damage", "fire"));
 
-    @Test
-    void testSetBlock() {
-        stats.setBlock(100, "life");
-        assertEquals(100, stats.getBlock("life"));
-        assertEquals(0, stats.getBlock("death"));
+        assertEquals(300, stats.getStat("damage", "life"));
+        stats.updateStats("damage", "life", -50);
+        assertEquals(250, stats.getStat("damage", "life"));
 
-        stats.setBlock(20, "life");
-        assertEquals(20, stats.getBlock("life"));
-        stats.setBlock(30, "death");
-        assertEquals(30, stats.getBlock("death"));
-    }
-
-    @Test
-    void testSetAccuracy() {
-        stats.setAccuracy(100, "life");
-        assertEquals(100, stats.getAccuracy("life"));
-        assertEquals(0, stats.getAccuracy("death"));
-
-        stats.setAccuracy(20, "life");
-        assertEquals(20, stats.getAccuracy("life"));
-        stats.setAccuracy(30, "death");
-        assertEquals(30, stats.getAccuracy("death"));
-    }
-
-    @Test
-    void testSetPierce() {
-        stats.setPierce(100, "life");
-        assertEquals(100, stats.getPierce("life"));
-        assertEquals(0, stats.getPierce("death"));
-
-        stats.setPierce(20, "life");
-        assertEquals(20, stats.getPierce("life"));
-        stats.setPierce(30, "death");
-        assertEquals(30, stats.getPierce("death"));
+        assertEquals(0, stats.getStat("pierce", "life"));
+        stats.updateStats("pierce", "life", 24);
+        assertEquals(24, stats.getStat("pierce", "life"));
     }
 }
