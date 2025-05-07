@@ -89,9 +89,9 @@ public class GearCalculator {
 
     // REQUIRES: pierceResistShieldDifference >= 0
     // EFFECTS: returns pierce damage multiplier as determined by:
-    // multiplier = max(1 + pierceResistShieldDifference / 100, 0.0)
+    // multiplier = pierceResistShieldDifference / 100
     // (pierceResistShieldDifference is attackerPierce - enemyResist - enemyShield)
     public double calculatePierceMultiplier(int pierceResistShieldDifference) {
-        return Math.max(1 + (double) pierceResistShieldDifference / 100, 0.0);
+        return (double) pierceResistShieldDifference / 100;
     }
 }

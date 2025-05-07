@@ -12,7 +12,7 @@ public class PlayerStatsTest {
 
     @BeforeEach
     void runBefore() {
-        stats = new PlayerStats(0, 0, 0);
+        stats = new PlayerStats(0, 0);
     }
 
     @Test
@@ -20,6 +20,8 @@ public class PlayerStatsTest {
         assertEquals(0, stats.getStat("health", "abc"));
         stats.updateStats("health", "def", 100);
         assertEquals(100, stats.getStat("health", "abc"));
+        stats.updateStats("health", "def", 300);
+        assertEquals(400, stats.getStat("health", "abc"));
     }
 
     @Test
@@ -27,6 +29,8 @@ public class PlayerStatsTest {
         assertEquals(0, stats.getStat("mana", "abc"));
         stats.updateStats("mana", "def", 150);
         assertEquals(150, stats.getStat("mana", "abc"));
+        stats.updateStats("mana", "def", 100);
+        assertEquals(250, stats.getStat("mana", "abc"));
     }
 
     @Test
@@ -34,6 +38,8 @@ public class PlayerStatsTest {
         assertEquals(0, stats.getStat("power pip", "abc"));
         stats.updateStats("power pip", "def", 150);
         assertEquals(150, stats.getStat("power pip", "abc"));
+        stats.updateStats("power pip", "def", 150);
+        assertEquals(300, stats.getStat("power pip", "abc"));
     }
 
     @Test

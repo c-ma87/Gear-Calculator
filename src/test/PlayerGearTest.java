@@ -6,10 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.model.GearItem;
+import main.model.StatBoost;
+import main.model.simulator.player.Player;
 import main.model.simulator.player.PlayerGear;
 
 public class PlayerGearTest {
     private PlayerGear gear;
+    private Player player;
     private GearItem hat;
     private GearItem robe;
     private GearItem boots;
@@ -20,6 +23,9 @@ public class PlayerGearTest {
     private GearItem deck;
     private GearItem pet;
     private GearItem mount;
+    private StatBoost boost1;
+    private StatBoost boost2;
+    private StatBoost boost3;
 
     @BeforeEach
     void runBefore() {
@@ -34,7 +40,14 @@ public class PlayerGearTest {
         pet = new GearItem("storm hound", "pet");
         mount = new GearItem("reindeer sleigh", "mount");
 
-        gear = new PlayerGear(null, null, null, null, null, null, null, null, null, null);
+        boost1 = new StatBoost(100, "life", "damage");
+        boost2 = new StatBoost(10, "fire", "resist");
+        boost3 = new StatBoost(300, null, "health");
+
+        initStats();
+
+        player = new Player(100, 24, 24);
+        gear = player.getPlayerGear();
     }
 
     @Test
@@ -60,5 +73,22 @@ public class PlayerGearTest {
         assertEquals(deck, gear.getDeck());
         assertEquals(pet, gear.getPet());
         assertEquals(mount, gear.getMount());
+
+        assertEquals(400, player.getPlayerStats().getStat("damage", "life"));
+        assertEquals(20, player.getPlayerStats().getStat("resist", "fire"));
+        assertEquals(1224, player.getPlayerStats().getStat("health", null));
+    }
+
+    private void initStats() {
+        hat.addStatBoost(boost1);
+        robe.addStatBoost(boost1);
+        boots.addStatBoost(boost1);
+        wand.addStatBoost(boost1);
+        athame.addStatBoost(boost2);
+        amulet.addStatBoost(boost2);
+        ring.addStatBoost(boost3);
+        deck.addStatBoost(boost3);
+        pet.addStatBoost(boost3);
+        mount.addStatBoost(boost3);
     }
 }

@@ -9,14 +9,16 @@ public class PlayerStats {
 
     private HashMap<String, HashMap<String, Integer>> playerStats;
 
-    // EFFECTS: constructs player stats with initial level, health, mana, and empty
-    // boost stats
-    public PlayerStats(int level, int health, int mana) {
+    // EFFECTS: constructs player stats with initial health, mana, and empty boost
+    // stats
+    public PlayerStats(int health, int mana) {
+        this.health = health;
+        this.mana = mana;
         playerStats = new HashMap<>();
     }
 
     // MODIFIES: this
-    // EFFECTS: if type is "health", "mana", or "power pip", sets value of said type
+    // EFFECTS: if type is "health", "mana", or "power pip", adds boost to this boost
     // to boost
     // else if stat associated with type and school do not already exist in
     // playerStats,
@@ -24,11 +26,11 @@ public class PlayerStats {
     // else adds boost to stat associated with type and school
     public void updateStats(String type, String school, int boost) {
         if (type == "health") {
-            health = boost;
+            health += boost;
         } else if (type == "mana") {
-            mana = boost;
+            mana += boost;
         } else if (type == "power pip") {
-            powerPip = boost;
+            powerPip += boost;
         } else {
             updateStat(type, school, boost);
         }

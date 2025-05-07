@@ -10,7 +10,7 @@ public class GearItem {
     private String name;
     private String type;
     // dictionary of stat boosts of mapped as stat type : list of stats of said type
-    private HashMap<String, ArrayList<StatBoost>> statBoosts;
+    private ArrayList<StatBoost> statBoosts;
     private SetBonus setBonus;
 
     // EFFECTS: constructs a gear item with a name and type, and an empty list of
@@ -18,43 +18,35 @@ public class GearItem {
     public GearItem(String name, String type) {
         this.name = name;
         this.type = type;
-        statBoosts = new HashMap<>();
+        statBoosts = new ArrayList<>();
         setBonus = null;
     }
 
     // MODIFIES: this
-    // EFFECTS: if statBoost with the same type and school is not already in stats,
-    // adds statBoost to stats
-    // if stat boost with same type and school is already in stats, replace existing
-    // stat boost with new statBoost
+    // EFFECTS: if stat boost with same type and school is already in stats, replaces
+    // existing stat boost with new statBoost
+    // otherwise adds statBoost to statBoosts
     public void addStatBoost(StatBoost statBoost) {
-        if (!statBoosts.containsKey(statBoost.getType())) {
-            ArrayList<StatBoost> stats = new ArrayList<>();
-            stats.add(statBoost);
-            statBoosts.put(statBoost.getType(), stats);
+        if (statBoosts.contains(statBoost)) {
+            StatBoost boost = getStatBoost(statBoost);
+            boost.setBoost(statBoost.getBoost());
         } else {
-            ArrayList<StatBoost> stats = statBoosts.get(statBoost.getType());
-            if (!stats.contains(statBoost)) {
-                stats.add(statBoost);
-            } else {
-                replaceStatBoost(statBoost);
-            }
+            statBoosts.add(statBoost);
         }
     }
 
+    // REQUIRES: statBoost is in statBoosts
     // MODIFIES: this
     // EFFECTS: replaces stat boost in stats with the same school
     // and type as statBoost
-    private void replaceStatBoost(StatBoost statBoost) {
-        if (statBoosts.containsKey(statBoost.getType())) {
-            ArrayList<StatBoost> stats = statBoosts.get(statBoost.getType());
-            for (int index = 0; index < stats.size(); index++) {
-                if (stats.get(index).equals(statBoost)) {
-                    stats.remove(index);
-                    stats.add(index, statBoost);
-                }
+    private StatBoost getStatBoost(StatBoost statBoost) {
+        StatBoost stat = null;
+        for (StatBoost boost : statBoosts) {
+            if (boost.equals(statBoost)) {
+                stat = boost;
             }
         }
+        return stat;
     }
 
     public void setSetBonus(SetBonus setBonus) {
@@ -75,7 +67,7 @@ public class GearItem {
         return type;
     }
 
-    public HashMap<String, ArrayList<StatBoost>> getStatBoosts() {
+    public ArrayList<StatBoost> getStatBoosts() {
         return statBoosts;
     }
 
