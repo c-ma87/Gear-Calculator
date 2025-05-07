@@ -3,7 +3,6 @@ package main.model;
 import main.model.setBonus.SetBonus;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 // represents a gear item with item stats
 public class GearItem {
