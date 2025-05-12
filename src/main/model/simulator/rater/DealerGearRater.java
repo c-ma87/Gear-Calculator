@@ -1,0 +1,20 @@
+package main.model.simulator.rater;
+
+import main.model.GearItem;
+
+public class DealerGearRater extends GearRater {
+
+    // REQUIRES: item is not null
+    // EFFECTS: gives item a score based on damage dealt, number of rounds played, and whether the player won
+    // - higher rating for higher damage dealt
+    // - higher rating for less rounds played, scored as 100 / numRounds
+    // - higher rating for player win: if player wins, add points equal to combined total of enemy health
+    // total score is 2(damageDealt + numRounds) + enemy health if player wins or
+    // 2(damageDealt + numRounds) if player loses
+    @Override
+    void rateItem(GearItem item) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'rateItem'");
+    }
+
+}
